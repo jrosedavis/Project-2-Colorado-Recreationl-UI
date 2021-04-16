@@ -8,3 +8,4 @@ Thumbs.db
 __pycache__/
 local_settings.py
 .ipynb_checkpoints
+config
