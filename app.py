@@ -45,7 +45,28 @@ def nps_sum():
     
     nps_df = pd.DataFrame(nps_results)
 
+    # coordinates_dict={
+    #     "Black Canyon of the Gunnison NP":{
+    #         "Latitude":38.5754,
+    #         "Longitude":-107.7416
+    #     },
+    #     "Great Sand Dunes NP & PRES":{
+    #         "Latitude":37.7275,
+    #         "Longitude":-105.6418
+    #     },
+    #     "Mesa Verde NP":{
+    #         "Latitude":37.2309,
+    #         "Longitude":-108.4618
+    #     },
+    #     "Rocky Mountain NP":{
+    #         "Latitude":40.3428,
+    #         "Longitude":-105.6836
+    #     }
+            
+    # }
+
     park_dict={}
+
     parks=list(nps_df ["Park"].unique())
     parks
 
