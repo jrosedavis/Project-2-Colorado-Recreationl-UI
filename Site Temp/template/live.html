@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>CO Camping</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="green" data-background-color= "white" data-image="assets/img/sidebar-4.jpg">
+      <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+      <div class="logo">
+        <a class="simple-text logo-mini" style="color:white">
+          CO National Parks
+        </a>
+        <a class="simple-text logo-normal" style="color:white">
+          Camping Planner
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          <!-- your sidebar here -->
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="campfires.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Campfires</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="live.html">
+                <i class="material-icons">location_ons</i>
+              <p>Live Weather</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- End Navbar -->
+      <!-- your content here -->
+    <div class="container box">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="title" style="color:white">📡 Live Interactive Map</h3>
+          <p>This map shows current tempreatre and wind paterns world wide.(Zoom and Drag on Map to See more)</p>
+          <hr>
+          <!-- Left box  -->
+          <div class="container-fluid">
+              <iframe class="responsive-iframe" width= "1070" height="900" src="https://embed.windy.com/embed2.html?lat=26.589&lon=-104.941&detailLat=39.739&detailLon=-104.987&width=auto&height=450&zoom=3&level=surface&overlay=wind&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=%C2%B0F&radarRange=-1" frameborder="0"></iframe>
+          </div>
+        </div>
+        <div class="col-md-12"> 
+      </div>
+    </div>
+      <!--Footer-->
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">
+                  Content by Austin Olea, Susan F, David Jimenez, Jenni Davis, Elizabeth Conway
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, template made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>

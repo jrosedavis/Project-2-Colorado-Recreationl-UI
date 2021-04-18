@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>CO Camping</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- Material Kit CSS -->
+  <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+
+  <!--Local JS-->
+  <script type="text/javascript">"../assets/js/local.js"</script>
+
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="green" data-background-color= "white" data-image="assets/img/sidebar-4.jpg">
+      <!--
+      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+      Tip 2: you can also add an image using data-image tag
+  -->
+      <div class="logo">
+        <a class="simple-text logo-mini" style="color:white">
+          CO National Parks
+        </a>
+        <a class="simple-text logo-normal" style="color:white">
+          Camping Planner
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          <!-- your sidebar here -->
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="campfires.html">
+              <i class="material-icons">bubble_chart</i>
+              <p>Campfires</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="live.html">
+                <i class="material-icons">location_ons</i>
+              <p>Live Weather</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- End Navbar -->
+      <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Park Selection</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <!-- your content here -->
+    <div class="container box">
+      <div class="row">
+        <div class="box">
+          <h3 class="title" style="color:white"> 🌲 Dashboard</h3>
+          <hr>
+          <p>Infomation for Your Park</p>
+          <div class="container" style="padding-bottom: 40px;">
+            <div class="row">
+              <div class="col-lg-6" style="padding: 30px;">
+                <div class="title" style="color:white">Map</div>
+                <a>
+                  <img>
+                </a>
+              </div>
+              <div class="col-lg-6" style="padding: 30px;">
+                <div class="title"  style="color:white">Campsight Location</div>
+                <a>
+                  <img>
+                </a>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6" style="padding: 30px;">
+                <div class="title" style="color:white">Camping Historical Data</div>
+                <a>
+                  <img>
+                </a>
+
+              </div>
+              <div class="col-lg-6" style="padding: 30px;">
+                <div class="title" style="color:white">Historic Weather Data</div>
+                <a>
+                  <img>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Footer-->
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="float-left">
+            <ul>
+              <li>
+                <a href="https://www.creative-tim.com">
+                  Content by Austin Olea, Susan F, David Jimenez, Jenni Davis, Elizabeth Conway
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, template made with <i class="material-icons">favorite</i> by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
