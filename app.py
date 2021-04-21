@@ -172,30 +172,30 @@ def facility_geocode():
     return jsonify(facilities)
 
 
-@app.route('/api/v1.0/reservations')
-def reservations():
+# @app.route('/api/v1.0/reservations')
+# def reservations():
 
-    # Create our session (link) from Python to the DB
-    session = Session(engine)
+#     # Create our session (link) from Python to the DB
+#     session = Session(engine)
 
-    # rmnp_results=conn.execute("Select * FROM nps_summary")
+#     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(Reservations)\
-        .filter(Reservations.SiteType==).all()
-    freservations={}
-    for each_result in results:
-        reservation={}
-        reservation={'OrderNumber':each_result.RegionDescription,
-                  'Park':each_result.Park,
-                  'State': each_result.FacilityState,
-                  'Longitude': each_result.FacilityLongitude,
-                  'Latitude': each_result.FacilityLatitude,
-                  'City': each_result.CityPlace,
-                  'County': each_result.County,
-                  }
+#     results = session.query(Reservations)\
+#         .filter(Reservations.SiteType==).all()
+#     freservations={}
+#     for each_result in results:
+#         reservation={}
+#         reservation={'OrderNumber':each_result.RegionDescription,
+#                   'Park':each_result.Park,
+#                   'State': each_result.FacilityState,
+#                   'Longitude': each_result.FacilityLongitude,
+#                   'Latitude': each_result.FacilityLatitude,
+#                   'City': each_result.CityPlace,
+#                   'County': each_result.County,
+#                   }
 
-        facilities[f'{each_result.FacilityID}']=facility
-    return jsonify(facilities)
+#         facilities[f'{each_result.FacilityID}']=facility
+#     return jsonify(facilities)
 
 #Run the app
 if __name__ == '__main__':
