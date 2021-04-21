@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from flask import Flask, jsonify
 import numpy as np
 import pandas as pd
 
 #Connect using the app.config and URI to user postgres sql and db
 app = Flask(__name__)
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost:5432/colorado_camping_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
@@ -32,15 +34,20 @@ def home():
         f"<strong>Geo Info Table:</strong><br/>"
         f"<a href=/api/v1.0/geocode_info>List: GeoInfo Table</a><br/>")
 
-@app.route('/api/v1.0/reservationstable')
-def reserve():
-    res_results = db.session.query(reservations).all()
-    results = list(np.ravel(res_results))
-    return jsonify(results)
+# @app.route('/api/v1.0/reservationstable')
+# def reserve():
+#     res_results = db.session.query(reservations).all()
+#     results = list(np.ravel(res_results))
+#     return jsonify(results)
 
-@app.route('/api/v1.0/nps_summary')
+# @app.route('/api/v1.0/nps_summary/<park_name>')
+# def get_park_info(park_name):
+#     query().filter() # something about name == park_name
+
+@app.route('/api/v1.0/nps_rockymountain')
 def nps_sum():
-    nps_results = db.session.query(nps_summary).all()
+    nps_results = db.session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month,nps_summary.Recreation_Visitors,nps_summary.Tent_Campers,nps_summary.RV_Campers)\
+        .filter(nps_summary.Park=="Rocky Mountain NP").all()
     # results = list(np.ravel(nps_results))
     
     nps_df = pd.DataFrame(nps_results)
@@ -65,33 +72,31 @@ def nps_sum():
             
     # }
 
-    park_dict={}
+    month_dict={}
 
-    parks=list(nps_df ["Park"].unique())
-    parks
+    months=list(nps_df ["Month"].unique())
 
-    for park in parks:
-        each_park_dict={'Year':list(nps_df[nps_df["Park"]==park]["Year"]),
-                        'Month':list(nps_df[nps_df["Park"]==park]["Month"]),
-                        'Visitors':list(nps_df[nps_df["Park"]==park]["Recreation_ Visitors"]),
-                        'Tent':list(nps_df[nps_df["Park"]==park]["Tent_Campers"]),
-                        'RV':list(nps_df[nps_df["Park"]==park]["RV_Campers"])
+    for each_month in months:
+        each_month_dict={'Year':list(nps_df[nps_df["Month"]==each_month]["Year"]),
+                        'Visitors':list(nps_df[nps_df["Month"]==each_month]["Recreation_ Visitors"]),
+                        'Tent':list(nps_df[nps_df["Month"]==each_month]["Tent_Campers"]),
+                        'RV':list(nps_df[nps_df["Month"]==each_month]["RV_Campers"])
                     }
-        park_dict[f'{park}']=each_park_dict
+        month_dict[f'{each_month}']=each_month_dict
            
-    return jsonify(park_dict)
+    return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_comments')
-def comments():
-    comments_results = db.session.query(nps_comments).all()
-    c_results = list(np.ravel(comments_results))
-    return jsonify(c_results)
+# @app.route('/api/v1.0/nps_comments')
+# def comments():
+#     comments_results = db.session.query(nps_comments).all()
+#     c_results = list(np.ravel(comments_results))
+#     return jsonify(c_results)
 
-@app.route('/api/v1.0/geocode_info')
-def geo():
-    geo_results = db.session.query(geocode_info).all()
-    g_results = list(np.ravel(geo_results))
-    return jsonify(g_results)
+# @app.route('/api/v1.0/geocode_info')
+# def geo():
+#     geo_results = db.session.query(geocode_info).all()
+#     g_results = list(np.ravel(geo_results))
+#     return jsonify(g_results)
 
 #Run the app
 if __name__ == '__main__':
