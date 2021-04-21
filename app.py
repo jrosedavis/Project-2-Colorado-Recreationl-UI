@@ -44,13 +44,13 @@ def home():
 # def get_park_info(park_name):
 #     query().filter() # something about name == park_name
 
-@app.route('/api/v1.0/nps_rockymountain')
-def nps_sum():
-    nps_results = db.session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month,nps_summary.Recreation_Visitors,nps_summary.Tent_Campers,nps_summary.RV_Campers)\
-        .filter(nps_summary.Park=="Rocky Mountain NP").all()
-    # results = list(np.ravel(nps_results))
+# @app.route('/api/v1.0/nps_rockymountain')
+# def nps_sum():
+#     nps_results = db.session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month,nps_summary.Recreation_Visitors,nps_summary.Tent_Campers,nps_summary.RV_Campers)\
+#         .filter(nps_summary.Park=="Rocky Mountain NP").all()
+#     # results = list(np.ravel(nps_results))
     
-    nps_df = pd.DataFrame(nps_results)
+#     nps_df = pd.DataFrame(nps_results)
 
     # coordinates_dict={
     #     "Black Canyon of the Gunnison NP":{
@@ -72,19 +72,23 @@ def nps_sum():
             
     # }
 
-    month_dict={}
+@app.route('/api/v1.0/nps_summary')
+def nps_sum():
+    nps_results = db.session.query(nps_summary.Park).filter(nps_summary.park=="Mesa Verde NP").first()
+    nps_df = pd.DataFrame(nps_results)
+    # park_dict={}
+    # parks=list(nps_df["Park"].unique())
+    # parks
+    # for park in parks:
+    #     each_park_dict={'Year':list(nps_df[nps_df["Park"]==park]["Year"]),
+    #                     'Month':list(nps_df[nps_df["Park"]==park]["Month"]),
+    #                     'Visitors':list(nps_df[nps_df["Park"]==park]["Recreation_ Visitors"]),
+    #                     'Tent':list(nps_df[nps_df["Park"]==park]["Tent_Campers"]),
+    #                     'RV':list(nps_df[nps_df["Park"]==park]["RV_Campers"])
+    #                 }
+    #     park_dict[f'{park}']=each_park_dict
+    # return jsonify(park_dict)
 
-    months=list(nps_df ["Month"].unique())
-
-    for each_month in months:
-        each_month_dict={'Year':list(nps_df[nps_df["Month"]==each_month]["Year"]),
-                        'Visitors':list(nps_df[nps_df["Month"]==each_month]["Recreation_ Visitors"]),
-                        'Tent':list(nps_df[nps_df["Month"]==each_month]["Tent_Campers"]),
-                        'RV':list(nps_df[nps_df["Month"]==each_month]["RV_Campers"])
-                    }
-        month_dict[f'{each_month}']=each_month_dict
-           
-    return jsonify(month_dict)
 
 # @app.route('/api/v1.0/nps_comments')
 # def comments():
