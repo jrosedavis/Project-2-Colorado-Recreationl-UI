@@ -1,107 +1,222 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, redirect, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from flask import Flask, jsonify
 import numpy as np
 import pandas as pd
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy import create_engine, func
+from sqlalchemy.orm import Session
+import psycopg2
 
 #Connect using the app.config and URI to user postgres sql and db
 app = Flask(__name__)
-CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost:5432/colorado_camping_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-db = SQLAlchemy(app)
+connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
+engine=create_engine(f'postgresql://{connection_string}')
 
-reservations = db.Table('reservations', db.metadata, autoload=True, autoload_with=db.engine)
-nps_summary = db.Table('nps_summary', db.metadata, autoload=True, autoload_with=db.engine)
-nps_comments = db.Table('nps_comments', db.metadata, autoload=True, autoload_with=db.engine)
-geocode_info = db.Table('geocode_info', db.metadata, autoload=True, autoload_with=db.engine)
+# reflect an existing database into a new model
+Base = automap_base()
+
+# reflect the tables
+Base.prepare(engine, reflect=True)
+
+# Save references to each table
+Reservations=Base.classes.reservations
+Geo_Info=Base.classes.geocode_info
+NPS_Summary=Base.classes.nps_summary
+NPS_Comments=Base.classes.nps_comments
 
 #Create a home route that defines all other routes
 @app.route('/')
 def home():
     return (
-        f"<strong>Reservations Table:</strong><br/>"
-        f"<a href=/api/v1.0/reservationstable>List: RTable</a><br/>"
+        f"<strong>Rocky Mountain National Park:</strong><br/>"
+        f"<a href=/api/v1.0/nps_rmnp>Monthly Dictionary</a><br/>"
         '<br/>'
-        f"<strong>NPS_Summary Table:</strong><br/>"
-        f"<a href=/api/v1.0/nps_summary>List: NPS_Sum Table</a><br/>"
+        f"<strong>Mesa Verde National Park:</strong><br/>"
+        f"<a href=/api/v1.0/nps_mvnp>Monthly Dictionary</a><br/>"
         '<br/>'
-        f"<strong>Nps_comments Table:</strong><br/>"
-        f"<a href=/api/v1.0/nps_comments>List: NPS_Comments Table</a><br/>"
+        f"<strong>Great Sand Dunes National Park & PRES:</strong><br/>"
+        f"<a href=/api/v1.0/nps_gsdnp>Monthly Dictionary</a><br/>"
         '<br/>'
-        f"<strong>Geo Info Table:</strong><br/>"
-        f"<a href=/api/v1.0/geocode_info>List: GeoInfo Table</a><br/>")
+        f"<strong>Black Canyon of the Gunnison National Park:</strong><br/>"
+        f"<a href=/api/v1.0/nps_bcnp>Monthly Dictionary</a><br/>"
+        '<br/>'
+        f"<strong>Facility Geocode Information:</strong><br/>"
+        f"<a href=/api/v1.0/geocode>Monthly Dictionary</a><br/>"
+        '<br/>')
 
-# @app.route('/api/v1.0/reservationstable')
-# def reserve():
-#     res_results = db.session.query(reservations).all()
-#     results = list(np.ravel(res_results))
-#     return jsonify(results)
+@app.route('/api/v1.0/nps_rmnp')
+def nps_rmnp():
 
-# @app.route('/api/v1.0/nps_summary/<park_name>')
-# def get_park_info(park_name):
-#     query().filter() # something about name == park_name
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
 
-# @app.route('/api/v1.0/nps_rockymountain')
-# def nps_sum():
-#     nps_results = db.session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month,nps_summary.Recreation_Visitors,nps_summary.Tent_Campers,nps_summary.RV_Campers)\
-#         .filter(nps_summary.Park=="Rocky Mountain NP").all()
-#     # results = list(np.ravel(nps_results))
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-#     nps_df = pd.DataFrame(nps_results)
+    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
+        .filter(NPS_Summary.Park=="Rocky Mountain NP").all()
+    
+    df = pd.DataFrame(results)
 
-    # coordinates_dict={
-    #     "Black Canyon of the Gunnison NP":{
-    #         "Latitude":38.5754,
-    #         "Longitude":-107.7416
-    #     },
-    #     "Great Sand Dunes NP & PRES":{
-    #         "Latitude":37.7275,
-    #         "Longitude":-105.6418
-    #     },
-    #     "Mesa Verde NP":{
-    #         "Latitude":37.2309,
-    #         "Longitude":-108.4618
-    #     },
-    #     "Rocky Mountain NP":{
-    #         "Latitude":40.3428,
-    #         "Longitude":-105.6836
-    #     }
-            
-    # }
+    month_dict={}
+    months=list(df["Month"].unique())
+    
+    for month in months:
+        each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
+                        'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
+                        'Tent':list(df[df["Month"]==month]["Tent_Campers"]),
+                        'RV':list(df[df["Month"]==month]["RV_Campers"])
+                    }
+        month_dict[f'{month}']=each_month_dict
+    return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_summary')
-def nps_sum():
-    nps_results = db.session.query(nps_summary.Park).filter(nps_summary.park=="Mesa Verde NP").first()
-    nps_df = pd.DataFrame(nps_results)
-    # park_dict={}
-    # parks=list(nps_df["Park"].unique())
-    # parks
-    # for park in parks:
-    #     each_park_dict={'Year':list(nps_df[nps_df["Park"]==park]["Year"]),
-    #                     'Month':list(nps_df[nps_df["Park"]==park]["Month"]),
-    #                     'Visitors':list(nps_df[nps_df["Park"]==park]["Recreation_ Visitors"]),
-    #                     'Tent':list(nps_df[nps_df["Park"]==park]["Tent_Campers"]),
-    #                     'RV':list(nps_df[nps_df["Park"]==park]["RV_Campers"])
-    #                 }
-    #     park_dict[f'{park}']=each_park_dict
-    # return jsonify(park_dict)
+@app.route('/api/v1.0/nps_mvnp')
+def nps_mvnp():
+
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
+    
+    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
+        .filter(NPS_Summary.Park=="Mesa Verde NP").all()
+    
+    df = pd.DataFrame(results)
+
+    month_dict={}
+    months=list(df["Month"].unique())
+    
+    for month in months:
+        each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
+                        'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
+                        'Tent':list(df[df["Month"]==month]["Tent_Campers"]),
+                        'RV':list(df[df["Month"]==month]["RV_Campers"])
+                    }
+        month_dict[f'{month}']=each_month_dict
+    return jsonify(month_dict)
+
+@app.route('/api/v1.0/nps_gsdnp')
+def nps_gsdnp():
+
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
+    
+    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
+        .filter(NPS_Summary.Park=="Great Sand Dunes NP & PRES").all()
+    
+    df = pd.DataFrame(results)
+
+    month_dict={}
+    months=list(df["Month"].unique())
+    
+    for month in months:
+        each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
+                        'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
+                        'Tent':list(df[df["Month"]==month]["Tent_Campers"]),
+                        'RV':list(df[df["Month"]==month]["RV_Campers"])
+                    }
+        month_dict[f'{month}']=each_month_dict
+    return jsonify(month_dict)
+
+@app.route('/api/v1.0/nps_bcnp')
+def nps_bcnp():
+
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
+    
+    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
+        .filter(NPS_Summary.Park=="Black Canyon of the Gunnison NP").all()
+    
+    df = pd.DataFrame(results)
+
+    month_dict={}
+    months=list(df["Month"].unique())
+    
+    for month in months:
+        each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
+                        'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
+                        'Tent':list(df[df["Month"]==month]["Tent_Campers"]),
+                        'RV':list(df[df["Month"]==month]["RV_Campers"])
+                    }
+        month_dict[f'{month}']=each_month_dict
+    return jsonify(month_dict)
+
+@app.route('/api/v1.0/geocode')
+def facility_geocode():
+
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
+    
+    results = session.query(Geo_Info).all()
+    facilities={}
+    for each_result in results:
+        facility={}
+        facility={'Region':each_result.RegionDescription,
+                  'Park':each_result.Park,
+                  'State': each_result.FacilityState,
+                  'Longitude': each_result.FacilityLongitude,
+                  'Latitude': each_result.FacilityLatitude,
+                  'City': each_result.CityPlace,
+                  'County': each_result.County,
+                  }
+
+        facilities[f'{each_result.FacilityID}']=facility
+    return jsonify(facilities)
 
 
-# @app.route('/api/v1.0/nps_comments')
-# def comments():
-#     comments_results = db.session.query(nps_comments).all()
-#     c_results = list(np.ravel(comments_results))
-#     return jsonify(c_results)
+@app.route('/api/v1.0/reservations')
+def reservations():
 
-# @app.route('/api/v1.0/geocode_info')
-# def geo():
-#     geo_results = db.session.query(geocode_info).all()
-#     g_results = list(np.ravel(geo_results))
-#     return jsonify(g_results)
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # rmnp_results=conn.execute("Select * FROM nps_summary")
+    
+    results = session.query(Reservations)\
+        .filter(Reservations.SiteType==).all()
+    freservations={}
+    for each_result in results:
+        reservation={}
+        reservation={'OrderNumber':each_result.RegionDescription,
+                  'Park':each_result.Park,
+                  'State': each_result.FacilityState,
+                  'Longitude': each_result.FacilityLongitude,
+                  'Latitude': each_result.FacilityLatitude,
+                  'City': each_result.CityPlace,
+                  'County': each_result.County,
+                  }
+
+        facilities[f'{each_result.FacilityID}']=facility
+    return jsonify(facilities)
 
 #Run the app
 if __name__ == '__main__':
     app.run(debug=True)
+
+# coordinates_dict={
+#     "Black Canyon of the Gunnison NP":{
+#         "Latitude":38.5754,
+#         "Longitude":-107.7416
+#     },
+#     "Great Sand Dunes NP & PRES":{
+#         "Latitude":37.7275,
+#         "Longitude":-105.6418
+#     },
+#     "Mesa Verde NP":{
+#         "Latitude":37.2309,
+#         "Longitude":-108.4618
+#     },
+#     "Rocky Mountain NP":{
+#         "Latitude":40.3428,
+#         "Longitude":-105.6836
+#     }
+        
+# }
