@@ -12,14 +12,13 @@ CREATE TABLE "reservations" (
 ALTER TABLE reservations
 ADD Primary Key ("OrderNumber");
 
-​
 CREATE TABLE "nps_summary" (
-	"ID" serial  primary key,
+	"uniqueid" int  primary key,
     "Park" varchar   NOT NULL,
     "State" varchar   ,
     "Year" int   NOT NULL,
     "Month" varchar   NOT NULL,
-    "Recreation_ Visitors" int   ,
+    "Recreation_Visitors" int   ,
     "Non_Recreation_Visitors" int   ,
     "Recreation_Visitor_Hours" int   ,
     "Non_Recreation_Hours" int   ,
@@ -32,7 +31,7 @@ CREATE TABLE "nps_summary" (
 );
 
 CREATE TABLE "nps_comments" (
-	"ID" serial  primary key,
+	"uniqueid" int  primary key,
     "Park" varchar   ,
     "State" varchar   ,
     "Year" int   ,
@@ -112,4 +111,4 @@ FROM nps_comments
 Where "Park"='Mesa Verde NP'
 Order By "CollectedDate" DESC
 
-
+SELECT * FROM nps_summary;

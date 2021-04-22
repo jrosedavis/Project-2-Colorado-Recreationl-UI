@@ -5,6 +5,7 @@ Thumbs.db
 *.DS_Store
 *.csv
 *.pyc
+*.env
 __pycache__/
 local_settings.py
 .ipynb_checkpoints
