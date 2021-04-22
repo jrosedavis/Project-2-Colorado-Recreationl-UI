@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 # connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
 # engine=create_engine(f'postgresql://{connection_string}')
-engine=create_engine(os.environ('DATABASE_URL').replace('://', 'ql://'))
+engine=create_engine(os.environ.get('DATABASE_URL').replace('://', 'ql://'))
 
 # reflect an existing database into a new model
 # Base = automap_base()
