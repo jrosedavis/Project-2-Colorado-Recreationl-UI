@@ -4,28 +4,32 @@ from flask_cors import CORS
 import numpy as np
 import pandas as pd
 import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
+# from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, func
 from sqlalchemy.orm import Session
 import psycopg2
+import os
 
 #Connect using the app.config and URI to user postgres sql and db
 app = Flask(__name__)
 
-connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
-engine=create_engine(f'postgresql://{connection_string}')
+# connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
+# engine=create_engine(f'postgresql://{connection_string}')
+engine=create_engine(os.environ('DATABASE_URL').replace('://', 'ql://'))
 
 # reflect an existing database into a new model
-Base = automap_base()
+# Base = automap_base()
+Base=declarative_base()
 
 # reflect the tables
-Base.prepare(engine, reflect=True)
+# Base.prepare(engine, reflect=True)
 
 # Save references to each table
-Reservations=Base.classes.reservations
-Geo_Info=Base.classes.geocode_info
-NPS_Summary=Base.classes.nps_summary
-NPS_Comments=Base.classes.nps_comments
+# Reservations=Base.classes.reservations
+# Geo_Info=Base.classes.geocode_info
+# NPS_Summary=Base.classes.nps_summary
+# NPS_Comments=Base.classes.nps_comments
 
 #Create a home route that defines all other routes
 @app.route('/')
