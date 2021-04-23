@@ -11,6 +11,11 @@ from sqlalchemy.orm import Session
 import psycopg2
 import os
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 #Connect using the app.config and URI to user postgres sql and db
 app = Flask(__name__)
 
@@ -27,10 +32,10 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 # Base.metadata.create_all(engine)
 # Save references to each table
-Reservations=Base.classes.reservations
+# Reservations=Base.classes.reservations
 geocode_info=Base.classes.geocode_info
 nps_summary=Base.classes.nps_summary
-NPS_Comments=Base.classes.nps_comments
+# NPS_Comments=Base.classes.nps_comments
 
 #Create a home route that defines all other routes
 @app.route('/')
