@@ -22,12 +22,12 @@ app = Flask(__name__)
 CORS(app, support_credentials=True)
 
 # # UNCOMMENT THE TWO LINES OF CODE BELOW TO RUN ON THE HEROKU POSTGRESQL DATABASE
-# DATABASE_URL=os.environ.get('DATABASE_URL')
-# engine=create_engine(DATABASE_URL.replace('://', 'ql://'))
+DATABASE_URL=os.environ.get('DATABASE_URL')
+engine=create_engine(DATABASE_URL.replace('://', 'ql://'))
 
 # COMMENT/UNCOMMENT THE TWO LINES BELOW TO USE THE LOCAL POSTGRESQL DATABASE
-connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
-engine=create_engine(f'postgresql://{connection_string}')
+# connection_string='postgres:postgres@localhost:5432/colorado_camping_db'
+# engine=create_engine(f'postgresql://{connection_string}')
 
 # reflect an existing database into a new model
 Base = automap_base()
