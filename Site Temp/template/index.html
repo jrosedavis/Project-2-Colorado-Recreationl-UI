@@ -18,6 +18,23 @@
   <!--Local JS-->
   <script type="text/javascript" src="../assets/js/local.js"></script>
 
+  <!--MAP-->
+  <link rel="icon1" type="image/png" href="https://icons8.com/icon/Lcoa9tnTFcSd/compass">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <!--D3 cdn-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="../assets/css/map_style.css">
+
+  <!-- Local Weather -->
+  <link rel="stylesheet" href="../assets/css/weather_stylew.css">
+  <link rel="icon" href="../assets/img/iconwrld.png" type="image/x-icon">
+
 </head>
 
 <body class="">
@@ -65,7 +82,7 @@
       <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Park Selection</button>
         <div id="myDropdown" class="dropdown-content">
-          <a href=/api/v1.0/nps_rmnp>Rocky Mountain National Park</a>
+          <a href="#">Link 1</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
@@ -82,7 +99,8 @@
               <div class="col-lg-6" style="padding: 30px;">
                 <div class="title" style="color:white">Map</div>
                 <a>
-                  <img>
+                  <!---MAP-->
+                  <div id="map"></div> 
                 </a>
               </div>
               <div class="col-lg-6" style="padding: 30px;">
@@ -102,9 +120,26 @@
 
               </div>
               <div class="col-lg-6" style="padding: 30px;">
-                <div class="title" style="color:white">Historic Weather Data</div>
+                <div class="title" style="color:white">Local Weather Data</div>
                 <a>
-                  <img>
+                  <!-- Local Weather -->
+                  <div class="app-wrap">
+                    <header>
+                        <input type='text' autocomplete="off" class="search-box"
+                        placeholder="Search for city near National Park..."/>
+                    </header>
+                    <main>
+                        <section class="location">
+                            <div class="city">Colorado, US</div>
+                            <div class="date">Thursday 10 January 2020</div>
+                        </section>
+                        <div class="current">
+                            <div class="temp"><span>°F</span></div>
+                            <div class="weather">Sunny</div>
+                            <div class="hi-low">°F / °F</div>
+                        </div>
+                    </main>
+                </div>
                 </a>
               </div>
             </div>
@@ -134,7 +169,29 @@
       </footer>
     </div>
   </div>
+
+  <!--GENERAL-->
   <script type="text/javascript" src="../assets/js/local_test.js"></script>
+
+  <!-- MAP -->
+
+   <!-- Leaflet JS -->
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+ <!--json-->
+ <script src="../assets/js/map_geo.json"></script>
+ <!-- API key -->
+ <script type="text/javascript" src="../assets/js/map_config.js"></script>
+ <!-- Our JS -->
+ <script type="text/javascript" src="../assets/js/map_logic.js"></script>
+
+ <!-- Local Weather -->
+
+ <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+ <script src="//cdn.jsdelivr.net/velocity/1.1.0/velocity.min.js"></script>
+ <script src="../assets/js/weather_logicw.js"></script>
+
 </body>
 
 </html>
