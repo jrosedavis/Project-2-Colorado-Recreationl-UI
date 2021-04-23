@@ -22,7 +22,7 @@ var nps_co = [
   for (var i = 0; i < nps_co.length; i++) {
     // loop through the cities array, create a new marker, push it to the cityMarkers array
     nationalParks.push(
-      L.marker(nps_co[i].location).bindPopup("<h1>" + nps_co[i].name + "</h1>")
+      L.marker(nps_co[i].location).bindPopup("<h4>" + nps_co[i].name + "</h4>")
     );
   }
   

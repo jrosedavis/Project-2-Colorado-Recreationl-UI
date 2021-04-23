@@ -6,7 +6,7 @@
 
 body {
     font-family: 'montserrat', sans-serif;
-    background: url(../img/frt.jpg) repeat 0 0;
+    background: slategray;
     background-size: cover;
     background-position: top center;
 }
@@ -14,7 +14,7 @@ body {
 .app-wrap {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    max-height: 400px;
     background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))
 }
 
@@ -31,17 +31,17 @@ header input{
     padding: 10px 15px;
     border: none;
     outline: none;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: white;
     border-radius: 16px 0px 16px 0px;
     border-bottom: 3px solid #0e9144;
-    color: #FFF;
+    color: black;
     font-size: 15px;
     font-weight: 300px;
     transition: 0.2s ease-out;
 }
 
 header input:focus{
-    background-color: rgba(0,0,0,0.6);
+    background-color:white;
 }
 
 main {
