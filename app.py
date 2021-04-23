@@ -37,22 +37,22 @@ NPS_Comments=Base.classes.nps_comments
 def home():
     return (
         f"<strong>Rocky Mountain National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_rmnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_rmnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Mesa Verde National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_mvnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_mvnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Great Sand Dunes National Park & PRES:</strong><br/>"
-        f"<a href=/api/v1.0/nps_gsdnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_gsdnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Black Canyon of the Gunnison National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_bcnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_bcnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Facility Geocode Information:</strong><br/>"
-        f"<a href=/api/v1.0/geocode>Monthly Dictionary</a><br/>"
+        f"<a href=/geocode>Monthly Dictionary</a><br/>"
         '<br/>')
 
-@app.route('/api/v1.0/nps_rmnp')
+@app.route('/nps_rmnp')
 def nps_rmnp():
 
     # Create our session (link) from Python to the DB
@@ -77,7 +77,7 @@ def nps_rmnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_mvnp')
+@app.route('/nps_mvnp')
 def nps_mvnp():
 
     # Create our session (link) from Python to the DB
@@ -102,7 +102,7 @@ def nps_mvnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_gsdnp')
+@app.route('/nps_gsdnp')
 def nps_gsdnp():
 
     # Create our session (link) from Python to the DB
@@ -127,7 +127,7 @@ def nps_gsdnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_bcnp')
+@app.route('/nps_bcnp')
 def nps_bcnp():
 
     # Create our session (link) from Python to the DB
@@ -152,7 +152,7 @@ def nps_bcnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/geocode')
+@app.route('/geocode')
 def facility_geocode():
 
     # Create our session (link) from Python to the DB
