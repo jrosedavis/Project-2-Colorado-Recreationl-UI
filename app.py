@@ -28,8 +28,8 @@ Base.prepare(engine, reflect=True)
 # Base.metadata.create_all(engine)
 # Save references to each table
 Reservations=Base.classes.reservations
-Geo_Info=Base.classes.geocode_info
-NPS_Summary=Base.classes.nps_summary
+geocode_info=Base.classes.geocode_info
+nps_summary=Base.classes.nps_summary
 NPS_Comments=Base.classes.nps_comments
 
 #Create a home route that defines all other routes
@@ -60,8 +60,8 @@ def nps_rmnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Rocky Mountain NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Rocky Mountain NP").all()
     
     df = pd.DataFrame(results)
 
@@ -85,8 +85,8 @@ def nps_mvnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Mesa Verde NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Mesa Verde NP").all()
     
     df = pd.DataFrame(results)
 
@@ -110,8 +110,8 @@ def nps_gsdnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Great Sand Dunes NP & PRES").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Great Sand Dunes NP & PRES").all()
     
     df = pd.DataFrame(results)
 
@@ -135,8 +135,8 @@ def nps_bcnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Black Canyon of the Gunnison NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Black Canyon of the Gunnison NP").all()
     
     df = pd.DataFrame(results)
 
@@ -160,7 +160,7 @@ def facility_geocode():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(Geo_Info).all()
+    results = session.query(geocode_info).all()
     facilities={}
     for each_result in results:
         facility={}
