@@ -63,10 +63,11 @@ def nps_rmnp():
     results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
         .filter(nps_summary.Park=="Rocky Mountain NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
@@ -88,11 +89,12 @@ def nps_mvnp():
     results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
         .filter(nps_summary.Park=="Mesa Verde NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
-    
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
+
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
                         'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
@@ -113,10 +115,11 @@ def nps_gsdnp():
     results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
         .filter(nps_summary.Park=="Great Sand Dunes NP & PRES").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
@@ -138,10 +141,11 @@ def nps_bcnp():
     results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
         .filter(nps_summary.Park=="Black Canyon of the Gunnison NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
