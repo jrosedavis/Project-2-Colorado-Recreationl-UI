@@ -28,8 +28,8 @@ Base.prepare(engine, reflect=True)
 # Base.metadata.create_all(engine)
 # Save references to each table
 Reservations=Base.classes.reservations
-Geo_Info=Base.classes.geocode_info
-NPS_Summary=Base.classes.nps_summary
+geocode_info=Base.classes.geocode_info
+nps_summary=Base.classes.nps_summary
 NPS_Comments=Base.classes.nps_comments
 
 #Create a home route that defines all other routes
@@ -37,22 +37,22 @@ NPS_Comments=Base.classes.nps_comments
 def home():
     return (
         f"<strong>Rocky Mountain National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_rmnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_rmnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Mesa Verde National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_mvnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_mvnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Great Sand Dunes National Park & PRES:</strong><br/>"
-        f"<a href=/api/v1.0/nps_gsdnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_gsdnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Black Canyon of the Gunnison National Park:</strong><br/>"
-        f"<a href=/api/v1.0/nps_bcnp>Monthly Dictionary</a><br/>"
+        f"<a href=/nps_bcnp>Monthly Dictionary</a><br/>"
         '<br/>'
         f"<strong>Facility Geocode Information:</strong><br/>"
-        f"<a href=/api/v1.0/geocode>Monthly Dictionary</a><br/>"
+        f"<a href=/geocode>Monthly Dictionary</a><br/>"
         '<br/>')
 
-@app.route('/api/v1.0/nps_rmnp')
+@app.route('/nps_rmnp')
 def nps_rmnp():
 
     # Create our session (link) from Python to the DB
@@ -60,13 +60,14 @@ def nps_rmnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Rocky Mountain NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Rocky Mountain NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
@@ -77,7 +78,7 @@ def nps_rmnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_mvnp')
+@app.route('/nps_mvnp')
 def nps_mvnp():
 
     # Create our session (link) from Python to the DB
@@ -85,14 +86,15 @@ def nps_mvnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Mesa Verde NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Mesa Verde NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
-    
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
+
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
                         'Visitors':list(df[df["Month"]==month]["Recreation_Visitors"]),
@@ -102,7 +104,7 @@ def nps_mvnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_gsdnp')
+@app.route('/nps_gsdnp')
 def nps_gsdnp():
 
     # Create our session (link) from Python to the DB
@@ -110,13 +112,14 @@ def nps_gsdnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Great Sand Dunes NP & PRES").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Great Sand Dunes NP & PRES").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
@@ -127,7 +130,7 @@ def nps_gsdnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/nps_bcnp')
+@app.route('/nps_bcnp')
 def nps_bcnp():
 
     # Create our session (link) from Python to the DB
@@ -135,13 +138,14 @@ def nps_bcnp():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(NPS_Summary.Park,NPS_Summary.Year,NPS_Summary.Month, NPS_Summary.Recreation_Visitors,NPS_Summary.Tent_Campers,NPS_Summary.RV_Campers )\
-        .filter(NPS_Summary.Park=="Black Canyon of the Gunnison NP").all()
+    results = session.query(nps_summary.Park,nps_summary.Year,nps_summary.Month, nps_summary.Recreation_Visitors,nps_summary.Tent_Campers, nps_summary.RV_Campers )\
+        .filter(nps_summary.Park=="Black Canyon of the Gunnison NP").all()
     
-    df = pd.DataFrame(results)
+    # df = pd.DataFrame(results)
 
     month_dict={}
-    months=list(df["Month"].unique())
+    # months=list(df["Month"].unique())
+    months=['January','February','March','April','May','June','July','August','September','October','November','December']
     
     for month in months:
         each_month_dict={'Year':list(df[df["Month"]==month]["Year"]),
@@ -152,7 +156,7 @@ def nps_bcnp():
         month_dict[f'{month}']=each_month_dict
     return jsonify(month_dict)
 
-@app.route('/api/v1.0/geocode')
+@app.route('/geocode')
 def facility_geocode():
 
     # Create our session (link) from Python to the DB
@@ -160,7 +164,7 @@ def facility_geocode():
 
     # rmnp_results=conn.execute("Select * FROM nps_summary")
     
-    results = session.query(Geo_Info).all()
+    results = session.query(geocode_info).all()
     facilities={}
     for each_result in results:
         facility={}
