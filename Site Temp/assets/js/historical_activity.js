@@ -147,6 +147,9 @@ function updatePlotly() {
     var endRoute = dropdownMenu.property('value');
     console.log(endRoute);
 
+    var activity = dropdownMenu.property('text');
+    console.log(activity);
+
     // Load json data as d3 object
     d3.json(`http://localhost:5000/${endRoute}`).then(data=>{
         // Grab values from the response json object to build the plots
