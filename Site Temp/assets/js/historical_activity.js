@@ -4,8 +4,11 @@ function init() {
     var endRoute = "nps_rmnp";
 
     var activity='RV';
-
-    var boxplot_title = `Selected National Park: ${activity} Activity`;
+    
+    var nps_select="Rocky Mountain National Park"
+    
+    var boxplot_title = `${nps_select}: ${activity} Activity`;
+    
 
     d3.json(`http://localhost:5000/${endRoute}`).then(data=>{
             // console.log(Object.keys(data))
@@ -149,8 +152,23 @@ function updatePlotly() {
     // var activity = dropdownMenu.text();
     var activity = d3.select("#selDataset option:checked").text();
     console.log(activity);
-    
-    var boxplot_title = `Selected National Park: ${activity} Activity`;
+
+    var nps_select
+
+    if (endRoute=="nps_rmnp"){
+        nps_select="Rocky Mountian National Park";
+    }
+    else if (endRoute=="nps_bcnp"){
+        nps_select="Black Canyon of the Gunnison National Park";
+    }
+    else if (endRoute=="nps_gsdnp"){
+        nps_select="Great Sand Dunes National Park";
+    }
+    else{
+        nps_select="Mesa Verde National Park";
+    };
+
+    var boxplot_title = `${nps_select}: ${activity} Activity`;
 
     // Load json data as d3 object
     d3.json(`http://localhost:5000/${endRoute}`).then(data=>{
