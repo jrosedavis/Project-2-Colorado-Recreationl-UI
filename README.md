@@ -4,7 +4,7 @@
 
 Jenni Davis, Susan Farago, David Jimenez, Elizabeth Conway, & Austin Olea (April 2021)
 
-[For more information, please refer to Colorado National Parks Project Final Report!](https://github.com/econway0321/project-2/blob/main/xxxxx.pdf)
+[For more information, please refer to Colorado National Parks Project Final Report!](https://github.com/econway0321/project-2/blob/main/Colorado_NP_Camping_(Project_2).pdf)
 
 ## Summary
 Our team is continuing our deep dive into reservable camping spots in Colorado. For our [ETL](https://github.com/econway0321/ETL-Project/blob/main/ETL%20Project%20Final%20Report.pdf) project we built a SQL database that identifies Colorado campground locations by latitude and longitude coordinates, provides the number of camping spaces at each location, and the allowable equipment to be used at each site.  The database also provides enthusiasts with the opportunity to review historical availability from 2010 - 2020 and reservation lead-time by location. In addition to our database we will be adding weather JS library to complete our dashboard.
