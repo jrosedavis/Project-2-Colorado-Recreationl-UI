@@ -149,7 +149,7 @@ function updatePlotly() {
     // var activity = dropdownMenu.text();
     var activity = d3.select("#selDataset option:checked").text();
     console.log(activity);
-
+    
     var boxplot_title = `Selected National Park: ${activity} Activity`;
 
     // Load json data as d3 object
