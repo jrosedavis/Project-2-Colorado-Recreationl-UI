@@ -35,6 +35,8 @@
   <link rel="stylesheet" href="../assets/css/weather_stylew.css">
   <link rel="icon" href="../assets/img/iconwrld.png" type="image/x-icon">
 
+  <!--Select CSS-->
+  <link rel="stylesheet" href="../assets/css/select.css">
 
 </head>
 
@@ -45,7 +47,7 @@
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
       Tip 2: you can also add an image using data-image tag
-      -->
+  -->
       <div class="text-center">
         <h3 class="simple-text logo-mini" style="color:white">
           CO National Parks
@@ -81,72 +83,55 @@
       </div>
     </div>
     <div class="main-panel">
-     
-      <select id="selDataset">
-
-        <option value="nps_rmnp" label="Rocky Mountain National Park: RV Camping">RV</option>
-        <option value="nps_rmnp" label="Rocky Mountain National Park: Tent Camping">Tent</option>
-        <option value="nps_rmnp" label="Rocky Mountain National Park: Rec Visitors">Rec</option>
-        <hr>
-        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: RV Camping">RV</option>
-        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Tent Camping">Tent</option>
-        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Rec Visitors">Rec</option>
-        <hr>
-        <option value="nps_gsdnp" label="Great Sand Dunes National Park: RV Camping">RV</option>
-        <option value="nps_gsdnp" label="Great Sand Dunes National Park: Tent Camping">Tent</option>
-        <option value="nps_gsdnp" label="Great Sand Dunes National Park: Rec Visitors">Rec</option>
-        <hr>
-        <option value="nps_mvnp" label="Mesa Verde National Park: RV Camping">RV</option>
-        <option value="nps_mvnp" label="Mesa Verde National Park: Tent Camping">Tent</option>
-        <option value="nps_mvnp" label="Mesa Verde National Park: Rec Visitors">Rec</option>
-
-        </select>
-    </div>
-    
+          <select class="select-css">
+              <option value="nps_rmnp" label="Rocky Mountain National Park: RV Camping" text="RV"></option>
+              <option value="nps_rmnp" label="Rocky Mountain National Park: Tent Camping" text=“Tent”></option>
+              <option value=“nps_rmnp” label="Rocky Mountain National Park: Rec Visitors" text=“Rec”></option>
+              <!--Black Canyon of the Gunnison National Park-->
+              <option disabled value="">__________</option>
+              <option value="nps_bcnp">Black Canyon of the Gunnison National Park: RV Camping</option>
+              <option value="nps_bcnp">Black Canyon of the Gunnison National Park: Tent Camping</option>
+              <option value="nps_bcnp">Black Canyon of the Gunnison National Park: Rec Visitors</option>
+              <!--Great Sand Dunes National Park-->
+              <option disabled value="">__________</option>
+              <option value="nps_gsdnp">Great Sand Dunes National Park: RV Camping</option>
+              <option value="nps_gsdnp">Great Sand Dunes National Park: Tent Camping</option>
+              <option value="nps_gsdnp">Great Sand Dunes National Park: Rec Visitors</option>
+              <!--Mesa Verde National Park-->
+              <option disabled value="">__________</option>
+              <option value="nps_mvnp">Mesa Verde National Park: RV Camping</option>
+              <option value="nps_mvnp">Mesa Verde National Park: Tent Camping</option>
+              <option value="nps_mvnp">Mesa Verde National Park: Rec Visitors</option>
+          </select>
+      </div>
       <!-- your content here -->
-    <div class="container box">
+    <div class="container box" style="padding-top: 40px;">
       <div class="column">
         <div class="box">
           <h3 class="title" style="color:white"> 🌲 Dashboard</h3>
           <hr>
           <div class="container" style="padding-bottom: 40px;">
+              <!---MAP-->
             <div class="row">
               <div class="col-lg-12" style="padding: 30px;">
                 <div class="title" style="color:white">National Park Locations</div>
                 <hr>
-                  <!---MAP-->
                   <div style="height: 600px" id="map"></div> 
               </div>
-              <div class="col-lg-6" style="padding: 30px;">
-                <div class="title"  style="color:white">Night Sky at Each Park</div>
+              <!-- BOX PLOT -->
+              <div class="row">
+                <div class="col-lg-12" style="padding: 30px;">
+                  <div class="title" style="color:white">Camping Historical Activity</div>
                   <hr>
-                  <a>Rocky Mountain National Park</a>
-                  <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=105.6836&latitude=40.3428&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
-                  <hr>
-                  <a>Black Canyon of the Gunnison National Park</a>
-                  <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=107.7416&latitude=38.5754&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
-                  <hr>
-                  <a>Great Sand Dunes National Park</a>
-                  <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=105.5125&latitude=37.733&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
-                  <hr>
-                  <a>Mesa Verde National Park</a>
-                  <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=108.4618&latitude=37.2309&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-12" style="padding: 30px;">
-                <div class="title" style="color:white">Camping Historical Activity</div>
-                <hr>
-                <!-- BOX PLOT -->
-                <div class="col-md-12">
-                  <div style="height: 600px" id="myDiv"></div>
+                  <div class="col-md-12">
+                    <div style="height: 600px" id="myDiv"></div>
+                  </div>
                 </div>
-              </div>
-              <div class="col-lg-12" style="padding: 30px;">
-                <div class="title" style="color:white">Local Weather Data</div>
+                <!-- Local Weather -->
+              <div class="col-lg-12" style="padding: 30px; padding-bottom: 40px" >
+                <div class="title" style="color:white; padding-top: 40px;">Local Weather Data</div>
                 <hr>
-                  <!-- Local Weather -->
-                  <div class="app-wrap">
+                  <div class="app-wrap" style="padding-bottom: 40px;">
                     <header>
                         <input type='text' autocomplete="off" class="search-box"
                         placeholder="Search for city near National Park..."/>
@@ -162,6 +147,51 @@
                             <div class="hi-low">°F / °F</div>
                         </div>
                     </main>
+                </div>
+              <!-- Stars -->  
+              <div class="container">
+                <div class="row">
+                  <div>
+                    <div class="box">
+                      <div class="title"  style="color:white; padding-top: 40px;">Night Sky at Each Park</div>
+                      <div class="container" style="padding-bottom: 40px;">
+                        <div class="row">
+                          <div class="col-lg-6" style="padding: 30px;">
+                            <div class="title"></div>
+                              <hr>
+                              <a>Rocky Mountain National Park</a>
+                              <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=105.6836&latitude=40.3428&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
+                              <hr>
+                            </a>
+                          </div>
+                          <div class="col-lg-6" style="padding: 30px;">
+                            <div class="title"></div>
+                            <hr>
+                            <a>Black Canyon of the Gunnison National Park</a>
+                            <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=107.7416&latitude=38.5754&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
+                            <hr>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-6" style="padding: 30px;">
+                            <div class="title"></div>
+                            <a>Great Sand Dunes National Park</a>
+                            <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=105.5125&latitude=37.733&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
+                            <hr>
+                            </a>
+                          </div>
+                          <div class="col-lg-6" style="padding: 30px;">
+                            <div class="title"></div>
+                            <a>Mesa Verde National Park</a>
+                            <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://virtualsky.lco.global/embed/index.html?longitude=108.4618&latitude=37.2309&projection=mollweide&showorbits=true&gridlines_gal=true&live=true&az=137" allowTransparency="true"></iframe>
+                           <hr>
+                          </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
