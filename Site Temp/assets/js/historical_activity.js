@@ -134,29 +134,25 @@ function init() {
 };
 
 // Call updatePlotly() when a change takes place to the DOM
-d3.selectAll("#myDropdown").on("click", updatePlotly);
+d3.selectAll("#selDataset").on("change", updatePlotly);
 
 // This function is called when a dropdown menu item is selected
 function updatePlotly() {
 
     // Use D3 to select the dropdown menu
-    var dropdownMenu = d3.select("#myDropdown")
-    // .property('value');
+    var dropdownMenu = d3.select("#selDataset");
     console.log(dropdownMenu);
 
     // // Assign the value of the dropdown menu option to a variable
-    // var endRoute = dropdownMenu.attr("href").replace('#','');
-    // console.log(endRoute);
-
-    // var activity = dropdownMenu.property("text");
-    // console.log(activity);
+    var endRoute = dropdownMenu.property('value');
+    console.log(endRoute);
 
     // Load json data as d3 object
     d3.json(`http://localhost:5000/${endRoute}`).then(data=>{
         // Grab values from the response json object to build the plots
         console.log(data.January[`${activity}`])
 
-  }); 
+    }); 
 };
 
 console.log()
