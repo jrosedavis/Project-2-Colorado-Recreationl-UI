@@ -274,7 +274,7 @@ function updatePlotly() {
         var layout = {
             title: `${boxplot_title}`
         };
-        Plotly.update('myDiv',data_traces,layout);
+        Plotly.newPlot('myDiv',data_traces,layout);
 
     }); 
 };
