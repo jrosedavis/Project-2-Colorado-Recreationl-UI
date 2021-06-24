@@ -10,6 +10,7 @@ from sqlalchemy import create_engine, func
 from sqlalchemy.orm import Session
 import psycopg2
 import os
+import sys
 
 from dotenv import load_dotenv
 
