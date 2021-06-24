@@ -10,3 +10,5 @@ __pycache__/
 local_settings.py
 .ipynb_checkpoints
 config
+.env
+/node_modules
