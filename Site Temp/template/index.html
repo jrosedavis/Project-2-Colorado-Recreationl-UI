@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
   <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link rel="icon" type="image/x-icon" href="https://img.icons8.com/emoji/48/000000/tent-emoji.png"/>
 
   <script src="https://d3js.org/d3.v6.min.js"></script>
   
@@ -41,9 +42,10 @@
 
 </head>
 
-<body class="">
+<body>
   <div class="wrapper ">
-    <div class="sidebar" data-color="green" data-background-color= "white" data-image="assets/img/sidebar-4.jpg">
+    <div id="mySidebar" class="sidebar" data-color="green" data-background-color= "white" data-image="assets/img/sidebar-4.jpg">
+      
       <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -52,9 +54,8 @@
       <div class="text-center">
         <h3 class="simple-text logo-mini" style="color:white">
           Colorado National Parks</h3>
-          <br>
           <h4 class="simple-text logo-mini" style="color:white">
-          <p>Begin to plan your trip to the National Parks in the beautiful state of Colorado with this friendly...</p>
+          <!-- <p>Begin to plan your trip to the National Parks in the beautiful state of Colorado with this friendly...</p> -->
         </h4>
         <h3 class="simple-text logo-normal" style="color:white">
           Camping Planner:        
@@ -93,48 +94,23 @@
         </ul>
       </div>
     </div>
-    <div  class="main-panel">
-          <select id="selDataset" class="select-css">
-              <!--Rocky Mountain National Park-->
-              <option value="nps_rmnp" label="Rocky Mountain National Park: RV Camping">RV</option>
-              <option value="nps_rmnp" label="Rocky Mountain National Park: Tent Camping">Tent</option>
-              <option value="nps_rmnp" label="Rocky Mountain National Park: Recreational Visitors">Rec</option>
-              
-              <!--Black Canyon of the Gunnison National Park-->
-              <option disabled value="">__________</option>
-              <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: RV Camping">RV</option>
-              <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Tent Camping">Tent</option>
-              <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Recreational Visitors">Rec</option>
-
-              <!--Great Sand Dunes National Park-->
-              <option disabled value="">__________</option>
-              <option value="nps_gsdnp" label="Great Sand Dunes National Park: RV Camping" >RV</option>
-              <option value="nps_gsdnp" label="Great Sand Dunes National Park: Tent Camping">Tent</option>
-              <option value="nps_gsdnp" label="Great Sand Dunes National Park: Recreational Visitors">Rec</option>
-
-              <!--Mesa Verde National Park-->
-              <option disabled value="">__________</option>
-              <option value="nps_mvnp" label="Mesa Verde National Park: RV Camping">RV</option>
-              <option value="nps_mvnp" label="Mesa Verde National Park: Tent Camping">Tent</option>
-              <option value="nps_mvnp" label="Mesa Verde National Park: Recreational Visitors">Rec</option>
-
-          </select>
-      </div>
       <!-- your content here -->
     <div class="container box" style="padding-top: 40px;">
       <div class="column">
         <div class="box">
-          <h1 class="title" style="color:white"> 🌲 Dashboard - Colorado Camping Planner</h1>
+          <h1 class="title" style="color:white"> 🌲 Dashboard - Colorado Camping Planner</h1></div>
+          <h3 class="simple-text logo-mini" style="color:white">
+          <p style="text-align:center;">Begin to plan your trip to the National Parks in the beautiful state of Colorado!</p></h3>
           <hr>
           <div class="container" style="padding-bottom: 40px;">
               <!---MAP-->
             <div class="row">
               <div class="col-lg-12" style="padding: 30px;">
-                <div class="title" style="color:white"><h2>Campground Locations</div></h2>
+                <div class="title" style="color:white"><h2><b>Campground Locations</div></h2></b>
                 <h4 class="simple-text logo-mini" style="color:white">
-                  <p>Need to find a campground at the National Park to stay in? Or are you on a road trip and need to stay near the park?</p>
+                  <p><b>Need to find a campground at the National Park to stay in? Or are you on a road trip and need to stay near the park?</p>
                   <p>Use these interactive maps to gain campground information from NPS and Recreation.gov data:</p>
-                </h4>
+                </h4></b>
                 <hr>
                 <div class='tableauPlaceholder' id='viz1624450844910' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XP&#47;XPGHKJ5ZH&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;XPGHKJ5ZH' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;XP&#47;XPGHKJ5ZH&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1624450844910');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.minWidth='420px';vizElement.style.maxWidth='650px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='887px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.minWidth='420px';vizElement.style.maxWidth='650px';vizElement.style.width='100%';vizElement.style.minHeight='587px';vizElement.style.maxHeight='887px';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     
                 var scriptElement = document.createElement('script');                    
@@ -145,27 +121,58 @@
 
 
               <!-- BOX PLOT -->
-
+            <div class="container-fluid">
               <div class="row">
                 <div class="col-lg-12" style="padding: 30px;">
-                  <div class="title" style="color:white"><h2>National Parks Data - Historical Recreational Activity</h2></div>
+                  <div class="title" style="color:white"><h2><b>National Parks Data - Historical Recreational Activity</b></h2></div>
                   <h4 class="simple-text logo-mini" style="color:white">
-                    <p>National Parks attract millions of recreational visitors every year. So when is the best time to visit to avoid the crowds?</p>
-                    <p>Use this interactive box-plot to gain insight how many recreational visitors visit the park each month as well as those who are RV or tent camping to determine the best time of the years to visit:</p>
+                    <p>The National Parks attract millions of recreational visitors every year. So when is the best time to visit to avoid the crowds?</p>
+                    <p><b>Use this interactive box-plot to gain insight on how many recreational visitors visit the park each month as well as those who are RV or tent camping to determine the best time of the years to visit:</p></b>
                   </h4>
                   <hr>
+                  <div  class="row">
+                    <select id="selDataset" class="button">
+                        <!--Rocky Mountain National Park-->
+                        <option value="nps_rmnp" label="Rocky Mountain National Park: RV Camping">RV</option>
+                        <option value="nps_rmnp" label="Rocky Mountain National Park: Tent Camping">Tent</option>
+                        <option value="nps_rmnp" label="Rocky Mountain National Park: Recreational Visitors">Rec</option>
+                        
+                        <!--Black Canyon of the Gunnison National Park-->
+                        <option disabled value="">__________</option>
+                        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: RV Camping">RV</option>
+                        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Tent Camping">Tent</option>
+                        <option value="nps_bcnp" label="Black Canyon of the Gunnison National Park: Recreational Visitors">Rec</option>
+          
+                        <!--Great Sand Dunes National Park-->
+                        <option disabled value="">__________</option>
+                        <option value="nps_gsdnp" label="Great Sand Dunes National Park: RV Camping" >RV</option>
+                        <option value="nps_gsdnp" label="Great Sand Dunes National Park: Tent Camping">Tent</option>
+                        <option value="nps_gsdnp" label="Great Sand Dunes National Park: Recreational Visitors">Rec</option>
+          
+                        <!--Mesa Verde National Park-->
+                        <option disabled value="">__________</option>
+                        <option value="nps_mvnp" label="Mesa Verde National Park: RV Camping">RV</option>
+                        <option value="nps_mvnp" label="Mesa Verde National Park: Tent Camping">Tent</option>
+                        <option value="nps_mvnp" label="Mesa Verde National Park: Recreational Visitors">Rec</option>
+                    </select>
+                  </div>
+                </div>
+                <br>
+                <br>
                   <div class="col-md-12">
                     <div style="height: 600px" id="myDiv"></div>
                   </div>
                 </div>
 
+
                 
                 <!-- Local Weather -->
+                <div class="container">
               <div class="col-lg-12" style="padding: 30px; padding-bottom: 40px" >
-                <div class="title" style="color:white; padding-top: 40px;"><h2>Local & Current Weather<h2></div>
+                <div class="title" style="color:white; padding-top: 40px;"><h2><b>Local & Current Weather</b><h2></div>
                   <h4 class="simple-text logo-mini" style="color:white">
-                    <p>Want to know the current weather conditions?</p>
-                    <p>Use this app to input city location found on the interactive maps to prepare you for the conditions:</p>
+                    <p><b>Want to know the current weather conditions?</p>
+                    <p>Use this app to input city location found on the interactive maps to prepare you for the conditions:</p></b>
                   </h4>
                 <hr>
                   <div class="app-wrap" style="padding-bottom: 40px;">
@@ -185,14 +192,19 @@
                         </div>
                     </main>
                 </div>
+              </div>
 
-                
+
               <!-- Stars -->  
               <div class="container">
                 <div class="row">
                   <div>
                     <div class="box">
-                      <div class="title"  style="color:white; padding-top: 40px;">Night Sky at Each Park</div>
+                      <div class="title"  style="color:white; padding-top: 40px;"><h2><b>Night Sky at Each Park</b></h2></div>
+                      <h4 class="simple-text logo-mini" style="color:white">
+                        <p><b>Do you enjoy looking up at the dark sky and enjoying the stars on a camping trip?</p>
+                        <p>Use these star charts to assist in finding planets and constellations:</b></p>
+                      </h4>
                       <div class="container" style="padding-bottom: 40px;">
                         <div class="row">
                           <div class="col-lg-6" style="padding: 30px;">

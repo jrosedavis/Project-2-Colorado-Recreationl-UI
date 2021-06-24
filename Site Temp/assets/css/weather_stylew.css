@@ -15,7 +15,10 @@ body {
     display: flex;
     flex-direction: column;
     max-height: 400px;
-    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))
+    max-width: 640px;
+    background-image: url("https://miro.medium.com/max/8576/0*zBu6EBAwjXXXHz-z");
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+
 }
 
 header {
@@ -23,6 +26,7 @@ header {
     justify-content: center;
     align-items: center;
     padding: 50px 15px 15px;
+    
 }
 
 header input{
@@ -49,6 +53,7 @@ main {
     padding: 25px 25px 50px;
     display: flex;
     flex-direction: column;
+    background-image: url("https://cdn1.iconfinder.com/data/icons/weather-vol-2-6/70/grey-clouds_with_small_sun-512.png");
     align-items: center;
     text-align: center;
 }
